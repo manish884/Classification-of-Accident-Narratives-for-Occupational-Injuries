@@ -31,7 +31,86 @@ g.	Event Type
 
 Among these classes, for the purpose of this study, three classes were considered – Degree of Injury, Frequency of Task Assigned and Nature of Injury. The Degree-of-Injury class indicates the fatality of the accident narrative. This is a binary class with two values: ‘Fatal’ and ‘Non-Fatal’. The narratives which resulted in a fatality will be given the utmost priority to address the issue that may be an immediate cause of concern, neglecting which may lead to further loss of life. The Frequency-of-Task-Assigned is a binary class which indicates the regularity of the work which the worker was indulged in. The two values in this class are: ‘Regularly Assigned’ and ‘Not Regularly Assigned’. The events which are regular will be given preference as the possibility of that event recurring is higher due to which another person can be affected. Nature-of-Injury is a multiclass with 19 values which can be assigned to a certain injury narrative. The labels are: Amputation/Crushing, Dislocation, Fire Burn, Serious Fall/Strike, Bruising/Contusion, Fracture/Broken Bones, Head Trauma, Heat Exhaustion, Laceration, Electrocution, Asphyxiation/Drowning, Chemical Burn, Puncture, Fall/Strike, Eye Injury, Freezer burn, Poison, Fall from Elevation, and Illness. 
 
+Methodology
+
+This segment consists of the ML models which were used in this study and the evaluation criteria chosen for different classes.
+
+1. Machine Learning models
+
+These machine learning models were assessed for prediction of different labels for each particular class depending on the injury description:
+a.	Logistic Regression (LR)
+b.	Support Vector Machine (SVM)
+c.	Long Short-Term Memory (LSTM) architecture based Recurrent Neural Network (RNN)
+These models are well accepted models and are thoroughly covered in the machine learning literature.
+
+Several previous studies have observed that SVM and LR has similar prediction performance for predicting E-codes. Neural Network are able to classify high dimensional data with a high accuracy and has been receiving attention lately for the same. 
+For classifying short texts as required in aviation accident data, Long Short-Term Memory (LSTM) based RNN are able to produce good results. In this study, LSTM, an advanced neural network and the machine learning models studied by previous researches were compared in terms of their prediction performances.
+
+For pre-processing, the non-alphanumeric characters were removed from the accident narrative. For SVM, first, all blank spaces were removed and all texts are changed to lowercase. Tokenization was performed on the complete text. Next, stop words were removed, and word stemming and lemmatization was performed. For Logistic Regression model and Support Vector Machine model, Scikit-learn, the machine learning library was used. An open-source software library for artificial-networks, Keras, which acts as an interface for the TensorFlow library was used for LSTM based Recurrent Neural Network model. All of the above models were coded in Python. For all the models, the training and test dataset was split with 30% of the dataset being used for testing.
+
+2. Performance Measures
+
+Recall, (also called Sensitivity) and F2-Measure (F-measure with β = 2) were considered for evaluating the classification performance of each binary class. These will be used primarily for measuring the performance of the models. Apart from these two, Precision (also called Recall, (also called Sensitivity)
+and F2-Measure (F-measure with β = 2) were considered for evaluating the
+classification performance of each binary class. These will be used primarily
+for measuring the performance of the models. Apart from these two, Precision (also
+called Positive Predictive Value) and Accuracy for all the three models were also
+observed. They are defined as following:
+
+Accuracy  = (total positives + negatives)/ (Total number of case in prediction set)
+
+Precision = (true positives)/(true positives + false positives) 
+
+Recall    =  (true Positives)/(true positives + false Negatives)
 
 
+F2-Measure = (%*(Precision)*(Recall))/(4*(Precision)+ (Recall))
+
+For ‘Degree of Injury’, the injuries which are fatal are
+the positive labels whereas non-fatal injuries are classified as negatives. As
+the injury narratives are prioritized based on its fatality, the aim here is to
+minimize misclassification of fatal injuries, i.e., to reduce the value of
+false negatives. Hence, Recall and F2-measure are considered as the primary
+performance measure for this class.
+
+For ‘Frequency of Task Assigned’, the tasks which are
+performed more often are considered to be the positive labels as the injury
+related to that particular task has higher chance of occurring again. Here, we
+are more concerned with identifying the tasks which are performed regularly and
+hence, would aim to minimize false negatives, i.e., reducing misclassification
+of regularly assigned tasks. Here too, Recall and F2-measure are considered as
+the primary performance measure.
+
+For ‘Nature of Injury’, all of the labels are of equal
+value for this study as we have no preference for any particular class. Hence
+accuracy is considered as the performance measure for this case. 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
+
+
+
+ 
 
 
